@@ -161,3 +161,84 @@ input:focus, textarea:focus {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(46, 196, 182, 0.4);
 }
+
+/* Animal Test Styles */
+.test-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.test-desc {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 30px;
+}
+
+#webcam-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#webcam-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #0073e6;
+    box-shadow: 0 0 30px rgba(0, 115, 230, 0.5);
+    background: #000;
+}
+
+#start-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.result-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    background: rgba(255,255,255,0.05);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.label-name {
+    width: 100px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.bar-bg {
+    flex-grow: 1;
+    height: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0073e6, #2ec4b6);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.percent {
+    width: 50px;
+    font-weight: bold;
+    color: #2ec4b6;
+}

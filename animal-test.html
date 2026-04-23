@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물상 테스트 - 로또 & AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">번호 생성</a>
+        <a href="animal-test.html" class="active">동물상 테스트</a>
+        <a href="contact.html">제휴 문의</a>
+    </nav>
+
+    <div class="test-container">
+        <h1>AI 동물상 테스트</h1>
+        <p class="test-desc">나의 얼굴은 어떤 동물을 닮았을까요?</p>
+        
+        <div id="webcam-box">
+            <div id="webcam-container"></div>
+            <button type="button" id="start-btn" onclick="init()">테스트 시작하기</button>
+        </div>
+
+        <div id="result-container">
+            <div id="label-container"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        const URL = "https://teachablemachine.withgoogle.com/models/tlkfAY-kP/";
+        let model, webcam, labelContainer, maxPredictions;
+
+        async function init() {
+            document.getElementById("start-btn").style.display = "none";
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+
+            const flip = true;
+            webcam = new tmImage.Webcam(300, 300, flip);
+            await webcam.setup();
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) {
+                const resultBar = document.createElement("div");
+                resultBar.classList.add("result-bar-wrapper");
+                resultBar.innerHTML = `
+                    <div class="label-name"></div>
+                    <div class="bar-bg">
+                        <div class="bar-fill"></div>
+                    </div>
+                    <div class="percent"></div>
+                `;
+                labelContainer.appendChild(resultBar);
+            }
+        }
+
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+            for (let i = 0; i < maxPredictions; i++) {
+                const className = prediction[i].className;
+                const probability = (prediction[i].probability * 100).toFixed(0);
+                
+                const barWrapper = labelContainer.childNodes[i];
+                barWrapper.querySelector(".label-name").textContent = className === "dog" ? "🐶 강아지상" : "🐱 고양이상";
+                barWrapper.querySelector(".bar-fill").style.width = probability + "%";
+                barWrapper.querySelector(".percent").textContent = probability + "%";
+            }
+        }
+    </script>
+</body>
+</html>
