@@ -69,3 +69,65 @@ h1 {
     background-color: #005bb5;
     box-shadow: 0 0 15px #0073e6, 0 0 30px #0073e6, 0 0 45px #0073e6;
 }
+
+.contact-section {
+    margin-top: 60px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.contact-section h2 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    color: #0073e6;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #0073e6;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #2ec4b6;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #26a69a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 196, 182, 0.4);
+}
