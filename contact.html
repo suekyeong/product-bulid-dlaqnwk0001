@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제휴 문의 - 로또 번호 생성기</title>
+    <title>제휴 문의 - 로또 & AI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html">번호 생성</a>
+        <a href="index.html">로또번호 생성</a>
         <a href="animal-test.html">동물상 테스트</a>
         <a href="contact.html" class="active">제휴 문의</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 모드 전환</button>
     </nav>
 
     <div class="contact-section">
@@ -28,5 +29,16 @@
             <button type="submit" class="submit-btn">문의하기</button>
         </form>
     </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
 </body>
 </html>

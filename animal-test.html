@@ -8,9 +8,10 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html">번호 생성</a>
+        <a href="index.html">로또번호 생성</a>
         <a href="animal-test.html" class="active">동물상 테스트</a>
         <a href="contact.html">제휴 문의</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 모드 전환</button>
     </nav>
 
     <div class="test-container">
@@ -37,7 +38,6 @@
         const URL = "https://teachablemachine.withgoogle.com/models/tlkfAY-kP/";
         let model, labelContainer, maxPredictions;
 
-        // 모델 미리 로드
         async function loadModel() {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
@@ -85,6 +85,15 @@
                 `;
                 labelContainer.appendChild(resultBar);
             }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
         }
     </script>
 </body>
