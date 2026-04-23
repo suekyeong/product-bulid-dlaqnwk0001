@@ -43,6 +43,14 @@ h1 {
         inset -10px -10px 20px rgba(0,0,0,0.5),
         inset 10px 10px 20px rgba(255,255,255,0.3),
         0 15px 25px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ball.show {
+    opacity: 1;
+    transform: scale(1);
 }
 
 #generator-btn {

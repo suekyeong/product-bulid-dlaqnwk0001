@@ -29,16 +29,21 @@ function displayNumbers() {
     for (let i = 0; i < 3; i++) { // Create 3 rows
         const lottoRow = document.createElement('div');
         lottoRow.classList.add('lotto-row');
+        lottoContainer.appendChild(lottoRow);
 
         const lottoNumbers = generateLottoNumbers();
-        lottoNumbers.forEach(number => {
+        lottoNumbers.forEach((number, index) => {
             const ball = document.createElement('div');
             ball.classList.add('ball');
             ball.textContent = number;
             ball.style.backgroundColor = colors[number - 1];
             lottoRow.appendChild(ball);
+
+            // Sequential exposure with delay
+            setTimeout(() => {
+                ball.classList.add('show');
+            }, (i * 600) + (index * 150)); 
         });
-        lottoContainer.appendChild(lottoRow);
     }
 }
 
