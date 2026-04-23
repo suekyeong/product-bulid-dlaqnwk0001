@@ -26,7 +26,7 @@ function generateLottoNumbers() {
 function displayNumbers() {
     lottoContainer.innerHTML = ''; // Clear previous numbers
 
-    for (let i = 0; i < 5; i++) { // Create 5 rows
+    for (let i = 0; i < 3; i++) { // Create 3 rows
         const lottoRow = document.createElement('div');
         lottoRow.classList.add('lotto-row');
 
